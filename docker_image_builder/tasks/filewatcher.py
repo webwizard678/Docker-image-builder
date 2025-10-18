@@ -13,7 +13,7 @@ from docker_image_builder.workspace.workspace import ensure_workspace
 
 logger = get_logger(__name__)
 
-TEMPLATE_FILE = "../templates/settings_template.yml"  # path to your template file
+TEMPLATE_FILE = "templates/settings_template.yml"  # path to your template file
 
 
 class DataEventHandler(FileSystemEventHandler):

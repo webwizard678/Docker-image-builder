@@ -3,7 +3,7 @@
 # * = any value
 # */x = every x units
 
-# schedule: '*/5 * * * *'
-# tag: ''
-# github_repo: 'https://github.com/crccheck/docker-hello-world'
-# github_branch: 'master'
+schedule: '*/5 * * * *'
+tag: 'hello-world:latest'
+github_repo: 'https://example.com'
+github_branch: 'master'

@@ -9,15 +9,12 @@ class ImageSettings:
 
     def __init__(self, settings_file: Path) -> None:
         self.settings_file: Path = settings_file.resolve()
-        settings_folder = settings_file if settings_file.is_dir() else settings_file.parent
-        workspace_path = settings.working_dir / settings_folder.name
+        self.workspace_path: Path = settings.working_dir.resolve() / settings_file.parent.name
         self.github_repo = None
         self.github_branch = None
         self.tag = None
         self.cron_expr = None
         self._load_settings()
-
-        self.workspace_path: Path = workspace_path.resolve() / Path(self.github_repo).stem if self.github_repo else workspace_path.resolve()
 
     def _load_settings(self) -> None:
         if not self.settings_file.exists():
