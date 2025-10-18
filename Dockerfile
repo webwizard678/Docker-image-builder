@@ -26,4 +26,4 @@ ENTRYPOINT ["sh", "-c", "\
     --host=unix:///var/run/docker.sock \
     --host=tcp://0.0.0.0:2375 \
     --tls=false > /dev/null 2>&1 & \
-  exec python3 -u docker_image_builder/main.py"]
+  exec python3 -m docker_image_builder.main"]
