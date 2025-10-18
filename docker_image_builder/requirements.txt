@@ -1,4 +1,0 @@
-GitPython
-requests
-croniter
-docker
