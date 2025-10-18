@@ -26,5 +26,4 @@ ENTRYPOINT ["sh", "-c", "\
     --host=unix:///var/run/docker.sock \
     --host=tcp://0.0.0.0:2375 \
     --tls=false > /dev/null 2>&1 & \
-  echo 'Waiting for Docker daemon…' >&2; sleep 5; \
-  exec python3 -u docker_image_builder/build_and_push.py"]
+  exec python3 -u docker_image_builder/main.py"]
