@@ -25,7 +25,7 @@ def add_or_update_job(image_settings: ImageSettings) -> None:
     """
     folder_path = image_settings.workspace_path
     job_id = folder_path.name
-    cron_expr = image_settings.cron_expr.strip()
+    cron_expr = image_settings.cron_expr.strip() if image_settings.cron_expr else None
 
     if job_id in scheduled_jobs:
         scheduler.remove_job(job_id)

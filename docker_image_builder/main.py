@@ -1,6 +1,6 @@
 from docker_image_builder.docker.builder import DockerBuilder
 from docker_image_builder.logger import get_logger
-from docker_image_builder.watcher import start_watcher
+from docker_image_builder.tasks.filewatcher import start_watcher
 
 logger = get_logger(__name__)
 
