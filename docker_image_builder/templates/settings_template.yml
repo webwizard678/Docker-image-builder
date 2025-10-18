@@ -1,0 +1,9 @@
+# schedule in cron format. This example runs every 5 minutes.
+# cron: minute, hour, day of month, month, day of week
+# * = any value
+# */x = every x units
+
+# schedule: '*/5 * * * *'
+# tag: ''
+# github_repo: 'https://github.com/crccheck/docker-hello-world'
+# github_branch: 'master'

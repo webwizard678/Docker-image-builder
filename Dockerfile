@@ -8,7 +8,7 @@ RUN apk add --no-cache \
 
 # 2) Set workdir and copy in requirements
 WORKDIR /docker_image_builder
-COPY ./docker_image_builder/requirements.txt /docker_image_builder/.
+COPY ./requirements.txt /docker_image_builder/.
 
 # 3) Create a virtualenv and install deps into it
 RUN python3 -m venv /venv \

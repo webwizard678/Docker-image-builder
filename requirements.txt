@@ -1,0 +1,6 @@
+gitpython
+apscheduler
+python-dotenv
+docker
+watchdog
+PyYAML
