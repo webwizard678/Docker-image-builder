@@ -8,20 +8,21 @@ from docker_image_builder.workspace.image_settings import ImageSettings
 
 logger = get_logger(__name__)
 
-TEMPLATE_FILE = "settings_template.yml"  # path to your template file
+TEMPLATE_FILE = Path(__file__).resolve().parent.parent / "templates/settings_template.yml"  # path to your template file
 
 
 def ensure_workspace() -> list[ImageSettings]:
     """Scan the config directory for build folders and ensure settings.yml files exist."""
-    if not os.path.exists(settings.config_dir):
-        os.makedirs(settings.config_dir)
+    config_dir = Path(settings.config_dir)
+    if not config_dir.exists():
+        config_dir.mkdir(parents=True, exist_ok=True)
         logger.info(f"Created config directory: {settings.config_dir}")
 
     image_dirs: list[ImageSettings] = []
 
-    for entry in os.scandir(settings.config_dir):
+    for entry in config_dir.iterdir():
         if entry.is_dir():
-            image_directory = Path(entry.path)
+            image_directory = Path(entry)
             settings_file = image_directory / settings.settings_filename
 
             if not os.path.exists(settings_file):
