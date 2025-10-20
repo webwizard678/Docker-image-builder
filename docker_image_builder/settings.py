@@ -9,7 +9,7 @@ class Settings:
 
     def __init__(self) -> None:
         self.log_level = os.getenv("LOG_LEVEL", "INFO").upper()
-        self.data_dir = os.getenv("DATA_DIR", "data")
+        self.config_dir = os.getenv("CONFIG_DIR", "config")
         self.settings_filename = os.getenv("SETTINGS_FILENAME", "settings.yml")
         working_dir = os.getenv("WORKING_DIR", "working_dir")
         self.working_dir = Path(working_dir)

@@ -16,8 +16,8 @@ logger = get_logger(__name__)
 TEMPLATE_FILE = "templates/settings_template.yml"  # path to your template file
 
 
-class DataEventHandler(FileSystemEventHandler):
-    """Handle filesystem events in the data directory."""
+class ConfigEventHandler(FileSystemEventHandler):
+    """Handle filesystem events in the config directory."""
 
     def on_created(self, event):
         if isinstance(event, DirCreatedEvent):
@@ -73,8 +73,8 @@ class DataEventHandler(FileSystemEventHandler):
 
 
 def start_watcher():
-    """Start monitoring the data folder for new folders and settings.yml changes."""
-    logger.info(f"Starting folder watcher on: {settings.data_dir}")
+    """Start monitoring the config folder for new folders and settings.yml changes."""
+    logger.info(f"Starting folder watcher on: {settings.config_dir}")
     images_settings = ensure_workspace()
 
     scheduler.start()
@@ -82,9 +82,9 @@ def start_watcher():
     for image_settings in images_settings:
         scheduler.add_or_update_job(image_settings)
 
-    event_handler = DataEventHandler()
+    event_handler = ConfigEventHandler()
     observer = Observer()
-    observer.schedule(event_handler, path=settings.data_dir, recursive=True)
+    observer.schedule(event_handler, path=settings.config_dir, recursive=True)
     observer.start()
 
     try:
