@@ -8,7 +8,6 @@ RUN apk add --no-cache \
       tzdata
 
 # 2) Set workdir and copy in requirements
-RUN mkdir /conf
 WORKDIR /docker_image_builder
 COPY ./requirements.txt /docker_image_builder/.
 
