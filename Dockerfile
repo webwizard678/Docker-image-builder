@@ -4,7 +4,8 @@ FROM docker:28.1.1
 RUN apk add --no-cache \
       python3 \
       py3-pip \
-      git
+      git \
+      tzdata
 
 # 2) Set workdir and copy in requirements
 WORKDIR /docker_image_builder
@@ -21,9 +22,4 @@ ENV PATH="/venv/bin:$PATH"
 COPY docker_image_builder/ ./docker_image_builder/
 
 # 6) Entrypoint: start Docker daemon silently, then run the script
-ENTRYPOINT ["sh", "-c", "\
-  dockerd \
-    --host=unix:///var/run/docker.sock \
-    --host=tcp://0.0.0.0:2375 \
-    --tls=false > /dev/null 2>&1 & \
-  exec python3 -m docker_image_builder.main"]
+ENTRYPOINT ["sh", "-c", "exec python3 -m docker_image_builder.main"]

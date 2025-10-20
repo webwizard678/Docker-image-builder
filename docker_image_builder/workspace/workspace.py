@@ -12,14 +12,14 @@ TEMPLATE_FILE = "settings_template.yml"  # path to your template file
 
 
 def ensure_workspace() -> list[ImageSettings]:
-    """Scan the data directory for build folders and ensure settings.yml files exist."""
-    if not os.path.exists(settings.data_dir):
-        os.makedirs(settings.data_dir)
-        logger.info(f"Created data directory: {settings.data_dir}")
+    """Scan the config directory for build folders and ensure settings.yml files exist."""
+    if not os.path.exists(settings.config_dir):
+        os.makedirs(settings.config_dir)
+        logger.info(f"Created config directory: {settings.config_dir}")
 
     image_dirs: list[ImageSettings] = []
 
-    for entry in os.scandir(settings.data_dir):
+    for entry in os.scandir(settings.config_dir):
         if entry.is_dir():
             image_directory = Path(entry.path)
             settings_file = image_directory / settings.settings_filename
@@ -37,6 +37,6 @@ def ensure_workspace() -> list[ImageSettings]:
             image_dirs.append(ImageSettings(settings_file))
 
     if not image_dirs:
-        logger.warning("No image folders found in data directory.")
+        logger.warning("No image folders found in config directory.")
 
     return image_dirs
