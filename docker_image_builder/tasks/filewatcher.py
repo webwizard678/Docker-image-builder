@@ -84,10 +84,12 @@ def start_watcher():
         scheduler.add_or_update_job(image_settings)
 
     event_handler = ConfigEventHandler()
-    # observer = Observer()
-    observer = PollingObserver(timeout=5)
+    observer = Observer()
     observer.schedule(event_handler, path=settings.config_dir, recursive=True)
     observer.start()
+    observer2 = PollingObserver(timeout=5)
+    observer2.schedule(event_handler, path=settings.config_dir, recursive=True)
+    observer2.start()
 
     try:
         while True:
