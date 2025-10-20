@@ -4,7 +4,6 @@ from pathlib import Path
 import shutil
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, DirCreatedEvent, DirDeletedEvent, FileModifiedEvent, FileDeletedEvent
-from watchdog.observers.polling import PollingObserver
 
 from docker_image_builder.logger import get_logger
 from docker_image_builder.tasks import scheduler
@@ -87,9 +86,6 @@ def start_watcher():
     observer = Observer()
     observer.schedule(event_handler, path=settings.config_dir, recursive=True)
     observer.start()
-    observer2 = PollingObserver(timeout=5)
-    observer2.schedule(event_handler, path=settings.config_dir, recursive=True)
-    observer2.start()
 
     try:
         while True:

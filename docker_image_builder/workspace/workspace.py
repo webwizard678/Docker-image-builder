@@ -16,7 +16,6 @@ def ensure_workspace() -> list[ImageSettings]:
     config_dir = Path(settings.config_dir)
     if not config_dir.exists():
         config_dir.mkdir(parents=True, exist_ok=True)
-        # os.makedirs(settings.config_dir)
         logger.info(f"Created config directory: {settings.config_dir}")
 
     image_dirs: list[ImageSettings] = []
