@@ -26,6 +26,7 @@ def ensure_workspace() -> list[ImageSettings]:
             image_directory = Path(entry)
             settings_file = image_directory / settings.settings_filename
 
+            print("copying from:", TEMPLATE_FILE, " to:", settings_file)
             shutil.copy(TEMPLATE_FILE, settings_file)
 
             if not settings_file.exists():
