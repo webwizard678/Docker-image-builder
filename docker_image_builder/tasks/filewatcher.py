@@ -13,7 +13,7 @@ from docker_image_builder.workspace.workspace import ensure_workspace
 
 logger = get_logger(__name__)
 
-TEMPLATE_FILE = "templates/settings_template.yml"  # path to your template file
+TEMPLATE_FILE = Path(__file__).resolve().parent.parent / "templates/settings_template.yml"  # path to your template file
 
 
 class ConfigEventHandler(FileSystemEventHandler):
@@ -25,8 +25,8 @@ class ConfigEventHandler(FileSystemEventHandler):
             logger.info(f"New folder detected: {folder_path.name}")
             settings_path = folder_path / settings.settings_filename
 
-            if not os.path.exists(settings_path):
-                if os.path.exists(TEMPLATE_FILE):
+            if not settings_path.exists():
+                if TEMPLATE_FILE.exists():
                     try:
                         shutil.copy(TEMPLATE_FILE, settings_path)
                         logger.info(f"Copied template settings.yml to {settings_path}")
