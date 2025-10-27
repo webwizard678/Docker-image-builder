@@ -1,4 +1,3 @@
-import os
 import shutil
 from pathlib import Path
 
@@ -27,8 +26,8 @@ def ensure_workspace() -> list[ImageSettings]:
             image_directory = Path(entry)
             settings_file = image_directory / settings.settings_filename
 
-            if not os.path.exists(settings_file):
-                if os.path.exists(TEMPLATE_FILE):
+            if not settings_file.exists():
+                if TEMPLATE_FILE.exists():
                     try:
                         shutil.copy(TEMPLATE_FILE, settings_file)
                         logger.info(f"Copied template settings.yml to {settings_file}")
