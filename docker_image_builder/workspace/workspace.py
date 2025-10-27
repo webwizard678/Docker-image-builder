@@ -9,6 +9,8 @@ from docker_image_builder.workspace.image_settings import ImageSettings
 logger = get_logger(__name__)
 
 TEMPLATE_FILE = Path(__file__).resolve().parent.parent / "templates/settings_template.yml"  # path to your template file
+print("template file:")
+print(TEMPLATE_FILE)
 
 
 def ensure_workspace() -> list[ImageSettings]:
